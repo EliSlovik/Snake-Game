@@ -14,9 +14,9 @@ xchange=0
 ychange=0
 foodx = round(random.randrange(0, 790) / 10.0) * 10.0
 foody = round(random.randrange(0, 590) / 10.0) * 10.0 
-def createfood():
-    foodx = round(random.randrange(0, 790) / 10.0) * 10.0
-    foody = round(random.randrange(0, 590) / 10.0) * 10.0
+#def createfood():
+    #foodx = round(random.randrange(0, 790) / 10.0) * 10.0
+    #foody = round(random.randrange(0, 590) / 10.0) * 10.0
 game_over = False
 while not game_over:
     pygame.draw.rect(display,green,[foodx,foody,10,10])
@@ -37,11 +37,13 @@ while not game_over:
         game_over = True
     if x1 == foodx and y1 == foody:
         print("good job")
-        createfood()
+        #createfood()
+        foodx = round(random.randrange(0, 790) / 10.0) * 10.0
+        foody = round(random.randrange(0, 590) / 10.0) * 10.0 
         pygame.draw.rect(display,green,[foodx,foody,10,10])
     display.fill(black)
     pygame.draw.rect(display,blue,[x1,y1,10,10])
-    #pygame.draw.rect(display, green, [foodx, foody, 10,10])
+    pygame.draw.rect(display, green, [foodx, foody, 10,10])
     pygame.display.update()
 print("You Lost")
 pygame.display.update()
