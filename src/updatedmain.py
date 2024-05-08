@@ -50,10 +50,10 @@ while not game_over:
                     xchange = 0
     x1 += xchange
     y1 += ychange
-    if x1 >= 1000 or x1 <= 0 or y1 >= 1000 or y1 <= 0:
+    if x1 >= 1000 or x1 <= 0 or y1 >= 1000 or y1 <= 0: #Check if player hit the wall
         game_over = True
     if x1 >= foodx and x1 <= foodx+20 and y1 >= foody and y1 <= foody+20 or foodx >= x1 and foodx <= x1+20 and foody >= y1 and foody <= y1+20:
-        print("good job")
+        print("good job") #Checks if player hit the food, then makes a new food position
         #createfood()
         foodx = round(random.randrange(0, 790) / 10.0) * 10.0
         foody = round(random.randrange(0, 590) / 10.0) * 10.0 
@@ -63,7 +63,7 @@ while not game_over:
         x2 = x1
         y2 = y1
         pygame.draw.rect(display,green,[x1,y1,20,20])
-        for i in direction:
+        for i in direction: #creates first body position by looking at the instructions in the direction array
             if i == "below":
                 y2 += 20
                 pygame.draw.rect(display,blue,[x2,y2,20,20])
@@ -95,7 +95,7 @@ while not game_over:
             if i != 1:
                 array[i] = array[i-1]
                 i -= 1
-            else:
+            else: #when the snake turns, change the position of each block
                 if movedirection == "DOWN":
                     array[i] = "above"
                 elif movedirection == "UP":
