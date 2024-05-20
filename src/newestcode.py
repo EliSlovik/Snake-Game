@@ -46,8 +46,21 @@ class Snake:
         bodylength += 1
     def die(self):
         pass
-
-
+class Food:
+    
+    def __init__(self, x, y, food_numb):
+        self.x=x
+        self.y=y
+        self.food_numb=food_numb
+        
+    def draw(self, display, red):
+        pygame.draw.rect(display,red,[self.x,self.y,20,20])
+        
+    def move(self):
+        self.x = round(random.randrange(0, 79) * 10)
+        self.y = round(random.randrange(0, 59) * 10)
+        pygame.draw.rect(display,red,[self.x,self.y,20,20])
+        
 # code starts
 import pygame
 import random
@@ -64,24 +77,23 @@ game_over = False
 movedirection = ""
 foodx = round(random.randrange(0, 79) * 10)
 foody = round(random.randrange(0, 59) * 10)
-
+food1 = Food(500, 500, 1)
 elis_snake = Snake(300,300,1,"RIGHT")
 while not game_over:
     display.fill(black)
-    pygame.draw.rect(display,red,[foodx,foody,20,20])
-
+    food1.draw(display, red)
     color = display.get_at((int(elis_snake.x),int(elis_snake.y)))
 
     for i in range (20):
         for z in range (20):
             color = display.get_at((int(elis_snake.x+z),int(elis_snake.y+i)))
             if color.r == 255:
+                food1.move()
                 print("we hit red")
                 break
             else:
                 continue
-            break
-        
+            break  
     elis_snake.draw(display, green)
 
     for event in pygame.event.get():
@@ -96,6 +108,5 @@ while not game_over:
                 elis_snake.change_direction("UP")
             elif event.key == pygame.K_DOWN:
                 elis_snake.change_direction("DOWN")
-
     elis_snake.move()
     pygame.display.update()
